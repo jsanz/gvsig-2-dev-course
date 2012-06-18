@@ -7,7 +7,6 @@ Have a nice day!
 
 [Jorge](http://jorgesanz.net)
 
-
-# Entries
+## Entries
 
 * [First day](day-01.md)
