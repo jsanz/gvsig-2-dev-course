@@ -33,10 +33,21 @@ Day 1
 - I create the github repo so I can track changes on the files easily. In fact I should do this first, so the changes
   on this first coding lesson are not tracked but anyways they are small and easy to locate.
 
+## Lesson 4
+
+- Read the documentation
+- Implement the asked methods on the tests (both API and Implementation)
+- Add the dependencies on the impl `pom.xml`
+- Cant't run the tests, I don't know were the tests are, tomorrow I'll ask Chema about them and try to
+  finish the exercise in time for the deadline.
+- Do the lesson test: 9.4, not bad
 
 ## Commits
 
-- [Lesson 3 commit](https://github.com/jsanz/gvsig-2-dev-course/commit/f4614a8d897c162fa423f93e74de697f50a6e690) with 
+- [Lesson 3](https://github.com/jsanz/gvsig-2-dev-course/commit/f4614a8d897c162fa423f93e74de697f50a6e690) with 
   all the generated code from the fortune cookie sample plugin plus the minor interface coding from lesson 3.
+
+- [Lesson 4](https://github.com/jsanz/gvsig-2-dev-course/commit/ad3532da7de92906a895dd041591ac6cbad9d7b6) without finishing
+  the lesson as I can't find the data on the portal so I can run the tests yet.
 
 

@@ -1,4 +1,4 @@
-Course diary
+Course log
 ===================================================
 
 On this folder I will all my comments as I advance through the course in order to let other watch it, take recordings of any problems and funny things I discover.
@@ -9,4 +9,4 @@ Have a nice day!
 
 ## Entries
 
-* [First day](/jsanz/gvsig-2-dev-course/blob/master/docs/day-01.md)
+* [Day 1](/jsanz/gvsig-2-dev-course/blob/master/docs/day-01.md): from lesson 1 to 4 in just one day
