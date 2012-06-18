@@ -23,6 +23,12 @@
  */
 package org.gvsig.visor;
 
+import java.io.File;
+
+import org.gvsig.fmap.dal.DataSet;
+import org.gvsig.fmap.dal.DataStore;
+import org.gvsig.fmap.dal.feature.FeatureSet;
+import org.gvsig.fmap.dal.feature.FeatureStore;
 import org.gvsig.tools.junit.AbstractLibraryAutoInitTestCase;
 
 /**
@@ -39,17 +45,52 @@ public abstract class VisorManagerTest extends
     @Override
     protected void doSetUp() throws Exception {
         manager = VisorLocator.getManager();
+
+        manager.initialize(getBlockForTest(), getPropertiesForTest(),
+            getBackgroundForTest());
     }
 
-    /**
-     * Test for the {@link VisorManager#getVisorService()}
-     * method.
-     * 
-     * @throws Exception
-     *             if there is any error in the tests
-     */
-    public void testGetVisorService() throws Exception {
-        // TODO
+    public void testGetBlocks() throws Exception {
+        FeatureStore store = null;
+        FeatureSet set = null;
+        store = manager.getBlocks();
+        // Check if the FeatureStore is null
+        assertNotNull(store);
+        // Get de Feature set and check it's not empty
+        set = store.getFeatureSet();
+        assertFalse("The blocks FeatureStore has elements", set.isEmpty());
+
     }
 
+    public void testGetProperties() throws Exception {
+        FeatureStore store = null;
+        FeatureSet set = null;
+
+        store = manager.getProperties();
+        // Check if the FeatureStore is null
+        assertNotNull(store);
+        // Get de Feature set and check it's not empty
+        set = store.getFeatureSet();
+        assertFalse("The blocks FeatureStore has elements", set.isEmpty());
+
+    }
+
+    public void testGetBackground() throws Exception {
+        DataStore store = null;
+        DataSet set = null;
+        store = manager.getBackground();
+        // Check if the FeatureStore is null
+        assertNotNull(store);
+        // Get de Feature set and check is not null
+        set = store.getDataSet();
+        assertNotNull(set);
+        // We can dispose it safely as it's not null
+        set.dispose();
+    }
+    protected abstract File getBlockForTest();
+
+    protected abstract File getPropertiesForTest();
+
+    protected abstract File getBackgroundForTest();
+    
 }

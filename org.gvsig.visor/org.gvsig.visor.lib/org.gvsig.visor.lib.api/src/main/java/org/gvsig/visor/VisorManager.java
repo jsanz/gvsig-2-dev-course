@@ -23,6 +23,8 @@
  */
 package org.gvsig.visor;
 
+import java.io.File;
+
 import org.gvsig.fmap.dal.DataStore;
 import org.gvsig.fmap.dal.feature.FeatureStore;
 import org.gvsig.fmap.geom.Geometry;
@@ -42,6 +44,9 @@ public interface VisorManager {
     public void initialize(FeatureStore blocks, FeatureStore properties,
         DataStore background);
 
+    public void initialize(File blocks, File properties, File background)
+        throws VisorException;
+
     public VisorBlock getBlock(Geometry point) throws VisorException;
 
     public FeatureStore getBlocks();
@@ -49,4 +54,5 @@ public interface VisorManager {
     public FeatureStore getProperties();
 
     public DataStore getBackground();
+
 }

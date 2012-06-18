@@ -23,6 +23,9 @@
  */
 package org.gvsig.visor.impl;
 
+import java.io.File;
+import java.net.URL;
+
 import org.gvsig.visor.VisorManager;
 import org.gvsig.visor.VisorManagerTest;
 
@@ -35,5 +38,29 @@ import org.gvsig.visor.VisorManagerTest;
  */
 public class DefaultVisorManagerTest extends VisorManagerTest {
 
-    // Nothing to add
+    private File getResource(String pathname) {
+        URL res = this.getClass().getClassLoader().getResource(pathname);
+        return new File(res.getPath());
+    }
+
+    @Override
+    protected void doSetUp() throws Exception {
+        // TODO Auto-generated method stub
+        super.doSetUp();
+    }
+
+    @Override
+    protected File getBlockForTest() {
+        return getResource("data/blocks.shp");
+    }
+
+    @Override
+    protected File getPropertiesForTest() {
+        return getResource("data/properties.shp");
+    }
+
+    @Override
+    protected File getBackgroundForTest() {
+        return getResource("data/PNOA.tiff");
+    }
 }
