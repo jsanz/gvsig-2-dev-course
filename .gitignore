@@ -1,0 +1,5 @@
+.metadata
+.project
+.classpath
+target
+org.gvsig.maven.base.build

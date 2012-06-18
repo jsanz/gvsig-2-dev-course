@@ -1,0 +1,189 @@
+<!--
+
+    gvSIG. Desktop Geographic Information System.
+
+    Copyright (C) 2007-2012 gvSIG Association.
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+    MA  02110-1301, USA.
+
+    For any additional information, do not hesitate to contact us
+    at info AT gvsig.com, or visit our website www.gvsig.com.
+
+-->
+<project name="org.gvsig.initial.build" default="prepare-workspace">
+
+	<dirname property="org.gvsig.initial.build.basedir" file="${ant.file.org.gvsig.initial.build}" />
+
+	<property name="workspace.basedir" value="${org.gvsig.initial.build.basedir}/.." />
+	<property name="build.basedir" value="${workspace.basedir}/org.gvsig.maven.base.build" description="Eclipse workspace location" />
+	<property name="build.jar.version" value="1.0.8-SNAPSHOT" />
+	<property name="build.jar.file" value="org.gvsig.maven.base.build-${build.jar.version}.jar" />
+
+	<property name="ant.libs.dir" location="${build.basedir}" description="Additional ant tasks libs folder" />
+
+	<target name="check-maven-base-build-available">
+		<available file="${user.home}/.m2/repository/org/gvsig/org.gvsig.maven.base.build/${build.jar.version}/${build.jar.file}" property="maven-base-build-available" />
+	</target>
+
+	<target name="get-maven-base-build-local" depends="check-maven-base-build-available" if="maven-base-build-available">
+		<!-- Unzip de build jar file from the maven repository into the workspace root folder -->
+		<copy todir="${workspace.basedir}" preservelastmodified="false" filtering="false">
+			<zipfileset src="${user.home}/.m2/repository/org/gvsig/org.gvsig.maven.base.build/${build.jar.version}/${build.jar.file}">
+				<patternset>
+					<exclude name="META-INF/**" />
+				</patternset>
+			</zipfileset>
+		</copy>
+	</target>
+
+	<target name="get-maven-base-build-remote" depends="check-maven-base-build-available" unless="maven-base-build-available">
+		<mkdir dir="target" />
+
+		<!-- Download the build jar file -->
+		<get src="http://devel.gvsig.org/m2repo/j2se/org/gvsig/org.gvsig.maven.base.build/${build.jar.version}/${build.jar.file}" dest="target/${build.jar.file}" verbose="true" />
+
+		<!-- Unzip de build jar file into the workspace root folder -->
+		<copy todir="${workspace.basedir}" preservelastmodified="false" filtering="false">
+			<zipfileset src="target/${build.jar.file}">
+				<patternset>
+					<exclude name="META-INF/**" />
+				</patternset>
+			</zipfileset>
+		</copy>
+
+	</target>
+	
+	<target name="find.depends.natives.file">
+	    <condition property="depends.natives.file.exists">
+            <available file="${org.gvsig.initial.build.basedir}/DEPENDS_ON_NATIVE_LIBRARIES"/>
+	    </condition>	
+	</target>
+	
+	<target name="find.gvsig.platform.properties.file" 
+			depends="find.depends.natives.file"
+			if="depends.natives.file.exists">
+	    <condition property="gvsig.platform.exists">
+            <available file="${user.home}/.gvsig.platform.properties"/>
+	    </condition>	
+	</target>
+	
+	<target name="check.gvsig.platform.properties" 
+			depends="find.gvsig.platform.properties.file">
+		<fail if="depends.natives.file.exists" unless="gvsig.platform.exists">
+ERROR!!
+	
+You have to define your gvSIG platform properties, 
+by creating the file: ${user.home}/.gvsig.platform.properties
+with the following content:
+
+native_platform=linux
+native_distribution=all
+native_compiler=gcc4
+native_arch=i386
+native_libraryType=dynamic
+export native_classifier=${native_platform}-${native_distribution}-${native_compiler}-${native_arch}-${native_libraryType}
+
+Replace the fifth initial variables values with the ones appropiate 
+to your platform.
+	
+If you use maven in the command line, you can use the previous file also
+to define the MAVEN_OPTS environment variable, by adding to your 
+.bash_rc file something like this:
+
+if [ -f "${HOME}/.gvsig.platform.properties" ]
+then
+    . ${HOME}/.gvsig.platform.properties
+    export MAVEN_OPTS="-Xmx256M -XX:MaxPermSize=64m -Dnative-classifier=${native_classifier}"
+else
+    export MAVEN_OPTS="-Xmx256M -XX:MaxPermSize=64m"
+fi
+
+It will work if you use the bash shell. In any other case or platform, you'll
+have to define your MAVEN_OPTS environment variable and set the 
+"native-classifier" parameter directly.
+		</fail>			
+	
+	</target>
+
+	<target name="prepare-workspace" depends="get-maven-base-build-local,get-maven-base-build-remote,check.gvsig.platform.properties">
+
+		<mkdir dir="target" />
+
+		<chmod dir="${build.basedir}/maven/bin" perm="u+x" includes="m2,mvn,mvnDebug" />
+
+		<!-- Copy the maven launchers to the workspace metadata folder -->
+		<copy todir="${workspace.basedir}/.metadata">
+			<fileset dir="${build.basedir}/eclipse-launchers">
+				<exclude name="**/org.eclipse.jdt.core.prefs" />
+				<exclude name="**/org.eclipse.core.variables.prefs" />
+			</fileset>
+		</copy>
+
+		<concat destfile="${workspace.basedir}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs" append="true">
+			<filelist dir="${build.basedir}/eclipse-launchers/.plugins/org.eclipse.core.runtime/.settings" files="org.eclipse.jdt.core.prefs" />
+		</concat>
+		<concat destfile="${workspace.basedir}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs" append="true">
+			<filelist dir="${build.basedir}/eclipse-launchers/.plugins/org.eclipse.core.runtime/.settings" files="org.eclipse.core.variables.prefs" />
+		</concat>
+
+		<!-- Configure the eclipse workspace -->
+		<ant antfile="${build.basedir}/maven-goals.xml" target="mvn-configure-eclipse-workspace" />
+
+		<!-- Configure the gvSIG profile -->
+		<ant antfile="${build.basedir}/check-gvsig-profile.xml" />
+
+		<property name="user-settings-file-location" value="${user.home}/.m2/settings.xml" />
+
+		<taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask" classpath="${workspace.basedir}/org.gvsig.maven.base.build/antelopetasks-3.2.10.jar" />
+
+		<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
+			<classpath>
+				<pathelement location="${ant.libs.dir}/com.oopsconsultancy.xmltask-1.16.1.jar" />
+			</classpath>
+		</taskdef>
+
+		<xmltask source="${user-settings-file-location}" dest="${user-settings-file-location}">
+			<copy path="//:settings/:profiles/:profile[:id/text() = 'gvsig-install']/:properties/:gvsig.install.dir/text()" property="current-gvsig-location" />
+		</xmltask>
+		<echo>current-gvsig-location = ${current-gvsig-location}</echo>
+
+
+		<stringutil string="${current-gvsig-location}" property="current-gvsig-location">
+
+			<replace regex="\\" replacement="/" />
+		</stringutil>
+		<stringutil string="${workspace.basedir}" property="workspace.basedir">
+
+			<replace regex="\\" replacement="/" />
+		</stringutil>
+
+		<replace file="${workspace.basedir}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs" token="@GVSIG_HOME@" value="${current-gvsig-location}" />
+		<replace file="${workspace.basedir}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs" token="@GVSIG_HOME@" value="${current-gvsig-location}" />
+
+		<!-- Compile, install and generate eclipse projects -->
+		<ant antfile="${build.basedir}/maven-goals.xml" target="mvn-install-and-eclipse-eclipse" />
+
+		<echo>INFORMATION!!!</echo>
+		<echo>Restart eclipse and then proceed to import the subprojects contained into the main project</echo>
+
+		<!-- TODO: copiar al proyecto de configuración general -->
+	</target>
+
+	<target name="clean">
+		<delete dir="target" />
+	</target>
+	
+</project>

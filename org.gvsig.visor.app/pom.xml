@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.gvsig</groupId>
+	<artifactId>org.gvsig.visor.app</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Example: basic Visor plugins</name>
+	<description>Example: basic Visor plugins</description>
+	<parent>
+		<groupId>org.gvsig</groupId>
+		<artifactId>org.gvsig.maven.base.extension.pom</artifactId>
+		<version>1.0.8-SNAPSHOT</version>
+	</parent>
+	<url>http://devel.gvsig.org/sites/org.gvsig.visor.app/${project.version}</url>
+	<scm>
+		<connection>scm:svn:https://devel.gvsig.org/svn/gvsig-plugintemplates/org.gvsig.visor/trunk/basic-with-user-interface/org.gvsig.visor.app</connection>
+		<developerConnection>scm:svn:https://devel.gvsig.org/svn/gvsig-plugintemplates/org.gvsig.visor/trunk/basic-with-user-interface/org.gvsig.visor.app</developerConnection>
+		<url>https://devel.gvsig.org/redmine/projects/gvsig-plugintemplates/repository/show/org.gvsig.visor/trunk/basic-with-user-interface/org.gvsig.visor.app</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>jjdelcerro</id>
+			<name>Joaqu�n Jos� del Cerro</name>
+			<email>jjdelcerro@gvsig.org</email>
+			<roles>
+				<role>Architect</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>jbadia</id>
+			<name>Jos� Bad�a</name>
+			<email>badia_jos@gva.es</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>cordinyana</id>
+			<name>C�sar Ordi�ana</name>
+			<email>cordinyana@gvsig.com</email>
+			<roles>
+				<role>Architect</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+	<distributionManagement>
+		<site>
+			<id>gvsig-repository</id>
+			<url>dav:https://devel.gvsig.org/sites/org.gvsig.visor.app/${project.version}</url>
+		</site>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>gvsig-public-http-repository</id>
+			<name>gvSIG maven public HTTP repository</name>
+			<url>http://devel.gvsig.org/m2repo/j2se</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>https://devel.gvsig.org/svn/gvsig-plugintemplates/org.gvsig.visor.app/tags</tagBase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.core.maven.dependencies</artifactId>
+				<version>2.0.1-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.app</artifactId>
+				<version>2.0-SNAPSHOT</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.visor.lib.api</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.visor.lib.impl</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.visor.swing.api</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gvsig</groupId>
+				<artifactId>org.gvsig.visor.swing.impl</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<scope>runtime</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>org.gvsig.visor.app.mainplugin</module>
+	</modules>
+
+</project>

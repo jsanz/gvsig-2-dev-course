@@ -1,0 +1,20 @@
+#
+#Mon Jun 18 20:38:33 CEST 2012
+owner=gvSIG Association
+code=org.gvsig.visor.app.mainplugin
+java-version=j1_5
+official=false
+type=plugin
+version=1.0.0-SNAPSHOT-1
+state=devel
+operating-system=all
+dependencies=required\: org.gvsig.app -ge 2.0.0-0
+sources-url=https\://devel.gvsig.org/redmine/projects/gvsig-plugintemplates/repository/show/org.gvsig.visor/trunk/basic-with-user-interface/org.gvsig.visor.app/org.gvsig.visor.app.mainplugin
+web-url=http\://www.gvsig.com
+architecture=all
+model-version=1.0.1
+categories=Visor
+description=Basic Visor example plugin, used as a template for gvSIG projects
+buildNumber=1
+gvSIG-version=2.0.0
+name=Example\: basic Visor for gvSIG

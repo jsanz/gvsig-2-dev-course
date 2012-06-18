@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.gvsig.visor.app.mainplugin</artifactId>
+	<packaging>jar</packaging>
+	<name>Example: basic Visor for gvSIG</name>
+	<description>Basic Visor example plugin, used as a template for gvSIG projects</description>
+	<parent>
+		<groupId>org.gvsig</groupId>
+		<artifactId>org.gvsig.visor.app</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.andami</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.i18n</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.tools.lib</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.tools.swing.api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.visor.lib.api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.visor.lib.impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.visor.swing.api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.visor.swing.impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+	<properties>
+		<package.info.state>devel</package.info.state>
+		<package.info.official>false</package.info.official>
+		<package.info.dependencies>required: org.gvsig.app -ge 2.0.0</package.info.dependencies>
+		<package.info.categories>Visor</package.info.categories>
+		<!-- DEFAULT VALUES <package.info.owner>gvSIG Association</package.info.owner> 
+			<package.info.webURL>http://www.gvsig.com</package.info.webURL> <package.info.operatingSystem>all</package.info.operatingSystem> 
+			<package.info.architecture>all</package.info.architecture> <package.info.javaVM>j1_5</package.info.javaVM> 
+			<package.info.gvSIGVersion>2.0.0</package.info.gvSIGVersion> <package.info.baseDownloadURL>../../pool/${pom.artifactId}</package.info.baseDownloadURL> 
+			<package.info.sourcesURL>${project.scm.url}</package.info.sourcesURL> -->
+	</properties>
+</project>
