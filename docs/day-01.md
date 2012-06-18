@@ -1,4 +1,4 @@
-Curso desarrollo gvSIG - día 1
+Day 1
 ============================================
 
 
@@ -24,5 +24,19 @@ Curso desarrollo gvSIG - día 1
   general development is not needed.
 - On the _External tools_ favorite section `mvn create_installer` is recommended but afterwards it doesn't appear
   at the screenshot
+
+# Lesson 3
+
+- I read the (great) documentation
+- I create the asked interfaces and modify the `VisitorManager`
+- I remove the `VisitorService` and associated tests
+- I create the github repo so I can track changes on the files easily. In fact I should do this first, so the changes
+  on this first coding lesson are not tracked but anyways they are small and easy to locate.
+
+
+# Commits
+
+- [Lesson 3 commit](https://github.com/jsanz/gvsig-2-dev-course/commit/f4614a8d897c162fa423f93e74de697f50a6e690) with 
+  all the generated code from the fortune cookie sample plugin plus the minor interface coding from lesson 3.
 
 
