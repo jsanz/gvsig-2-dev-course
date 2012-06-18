@@ -9,4 +9,4 @@ Have a nice day!
 
 ## Entries
 
-* [First day](day-01.md)
+* [First day](/jsanz/gvsig-2-dev-course/blob/master/docs/day-01.md)
