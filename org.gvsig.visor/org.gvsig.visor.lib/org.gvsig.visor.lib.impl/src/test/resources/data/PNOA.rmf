@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<RasterMetaFile>
+<FLyrGeoRaster>
+	<Extent>
+			<X>725729.339071567</X>
+			<Y>4372863.3</Y>
+			<RotationX>0.0</RotationX>
+			<RotationY>0.0</RotationY>
+			<PixelSizeX>0.1352030947765646</PixelSizeX>
+			<PixelSizeY>-0.135203094776482</PixelSizeY>
+			<Width>81.12185686593875</Width>
+			<Height>69.8999999994412</Height>
+	</Extent>
+	<Dimension>
+			<ImagePxWidth>600.0</ImagePxWidth>
+			<ImagePxHeight>517.0</ImagePxHeight>
+	</Dimension>
+</FLyrGeoRaster>
+</RasterMetaFile>

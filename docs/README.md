@@ -10,3 +10,4 @@ Have a nice day!
 ## Entries
 
 * [Day 1](/jsanz/gvsig-2-dev-course/blob/master/docs/day-01.md): from lesson 1 to 4 in just one day
+* [Day 2](/jsanz/gvsig-2-dev-course/blob/master/docs/day-02.md): lesson 4 finishing

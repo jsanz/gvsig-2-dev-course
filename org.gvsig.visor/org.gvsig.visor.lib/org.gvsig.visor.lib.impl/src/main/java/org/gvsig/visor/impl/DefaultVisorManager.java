@@ -109,9 +109,10 @@ public class DefaultVisorManager implements VisorManager {
         DataManager manager = DALLocator.getDataManager();
         try {
             DataStoreParameters params =
-                manager.createStoreParameters("GdalStore");
+                manager.createStoreParameters("Gdal Store");
             params.setDynValue("uri", tiff);
             params.setDynValue("srs", "EPSG:23030");
+            store = manager.openStore("Gdal Store", params);
         } catch (Exception e) {
             throw new VisorException(e);
         }

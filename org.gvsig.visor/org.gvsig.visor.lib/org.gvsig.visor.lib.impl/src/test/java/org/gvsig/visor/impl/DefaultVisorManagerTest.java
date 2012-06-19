@@ -61,6 +61,6 @@ public class DefaultVisorManagerTest extends VisorManagerTest {
 
     @Override
     protected File getBackgroundForTest() {
-        return getResource("data/PNOA.tiff");
+        return getResource("data/PNOA.tif");
     }
 }
