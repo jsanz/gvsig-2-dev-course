@@ -8,9 +8,8 @@ Day 2
 - Next error was the name of `Gdal Store`. It's weird having to use strings to load a store, there should be a way to find correct stores or at least to list those keys. The exception about not finding the store should be a good candidate to show available stores.
 - All green, yay!!
 - Trying to run the tests from `maven test` external tools but failed
-- Remove a lot of `VisorService` referencing code to avoid red crosses
 - Make a `mvn clean` and `mvn compile` from parent project `org.gvsig.visor`
-- I even have errors refering to an old `.getVisorService()` method
+- I still have errors refering to an old `.getVisorService()` method
 
 	-------------------------------------------------------------------------------
 	Test set: org.gvsig.visor.impl.DefaultVisorManagerTest
@@ -28,3 +27,4 @@ Day 2
 
 ## Commits
 
+- [Lesson 4 (2)](https://github.com/jsanz/gvsig-2-dev-course/commit/158d6cfbba07a9779d908cf8d76b32c941c95569) 
