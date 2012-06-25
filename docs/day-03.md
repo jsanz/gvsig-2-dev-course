@@ -6,9 +6,7 @@ Day 3
 
 ## Lesson 5
 
-
-
-
+- Read the lesson, quite a lot of stuff to do, that's great!!
 
 ## Commits
 
