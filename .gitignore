@@ -4,3 +4,5 @@
 .settings
 target
 org.gvsig.maven.base.build
+*~
+*bak

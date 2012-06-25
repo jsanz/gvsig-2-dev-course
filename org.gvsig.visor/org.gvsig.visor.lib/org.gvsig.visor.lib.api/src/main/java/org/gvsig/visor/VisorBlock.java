@@ -28,16 +28,38 @@ import java.util.List;
 import org.gvsig.fmap.geom.Geometry;
 
 /**
+ * A block of buildings for the viewer plugin.
+ * 
  * @author jsanz
- *
+ * 
  */
 public interface VisorBlock {
 
+    /**
+     * 
+     * @return the {link {@link Geometry} that represents the block
+     */
     public Geometry getShape();
 
+    /**
+     * 
+     * @return the list of {@link VisorProperty} that are inside the block *
+     * 
+     * @throws VisorException
+     */
     public List<VisorProperty> getProperties() throws VisorException;
 
+    /**
+     * 
+     * @return a reference to the plugin manager
+     * 
+     * @see VisorManager
+     */
     public VisorManager getManager();
 
+    /**
+     * 
+     * @return an identificator of the block
+     */
     public String getCode();
 }

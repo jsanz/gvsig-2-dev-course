@@ -41,18 +41,52 @@ import org.gvsig.fmap.geom.Geometry;
  */
 public interface VisorManager {
 
+    /**
+     * Initialization method based on DAL objects
+     * 
+     * @param blocks
+     * @param properties
+     * @param background
+     */
     public void initialize(FeatureStore blocks, FeatureStore properties,
         DataStore background);
 
+    /**
+     * Initialization method based on {@link File} objects
+     * 
+     * @param blocks
+     * @param properties
+     * @param background
+     * @throws VisorException
+     */
     public void initialize(File blocks, File properties, File background)
         throws VisorException;
 
+    /**
+     * 
+     * @param point
+     *            to look blocks
+     * @return a {@link VisorBlock} who's geometry intersects the passed point
+     * @throws VisorException
+     */
     public VisorBlock getBlock(Geometry point) throws VisorException;
 
+    /**
+     * 
+     * @return the store of blocks
+     */
     public FeatureStore getBlocks();
 
+    /**
+     * 
+     * @return the store of properties
+     */
     public FeatureStore getProperties();
 
+    /**
+     * 
+     * @return the raster dataset used as background
+     */
     public DataStore getBackground();
 
 }

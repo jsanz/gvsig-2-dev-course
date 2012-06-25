@@ -50,6 +50,12 @@ public abstract class VisorManagerTest extends
             getBackgroundForTest());
     }
 
+    /**
+     * Try to open the store for the blocks and check if
+     * it has features in it or not
+     * 
+     * @throws Exception
+     */
     public void testGetBlocks() throws Exception {
         FeatureStore store = null;
         FeatureSet set = null;
@@ -58,10 +64,16 @@ public abstract class VisorManagerTest extends
         assertNotNull(store);
         // Get de Feature set and check it's not empty
         set = store.getFeatureSet();
-        assertFalse("The blocks FeatureStore has elements", set.isEmpty());
+        assertFalse("The blocks FeatureStore has not elements", set.isEmpty());
 
     }
 
+    /**
+     * Troy to open the properties store and check
+     * if it has features or not
+     * 
+     * @throws Exception
+     */
     public void testGetProperties() throws Exception {
         FeatureStore store = null;
         FeatureSet set = null;
@@ -71,10 +83,16 @@ public abstract class VisorManagerTest extends
         assertNotNull(store);
         // Get de Feature set and check it's not empty
         set = store.getFeatureSet();
-        assertFalse("The blocks FeatureStore has elements", set.isEmpty());
+        assertFalse("The blocks FeatureStore has not elements", set.isEmpty());
 
     }
 
+    /**
+     * Try to opoen the background TIFF file and
+     * get a data set assuring is not null
+     * 
+     * @throws Exception
+     */
     public void testGetBackground() throws Exception {
         DataStore store = null;
         DataSet set = null;
@@ -87,10 +105,29 @@ public abstract class VisorManagerTest extends
         // We can dispose it safely as it's not null
         set.dispose();
     }
+
+    /**
+     * Abstract method to retrieve an specific block
+     * data set for testing
+     * 
+     * @return the File descriptor for the shapfile
+     */
     protected abstract File getBlockForTest();
 
+    /**
+     * Abstract method to retrieve an specific properties
+     * data set for testing
+     * 
+     * @return the File descriptor for the shapfile
+     */
     protected abstract File getPropertiesForTest();
 
+    /**
+     * Abstract method to retrieve a raster dataset
+     * as background
+     * 
+     * @return
+     */
     protected abstract File getBackgroundForTest();
     
 }

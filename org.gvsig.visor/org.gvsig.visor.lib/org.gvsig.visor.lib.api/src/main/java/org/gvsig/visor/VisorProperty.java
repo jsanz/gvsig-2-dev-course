@@ -26,20 +26,47 @@ package org.gvsig.visor;
 import org.gvsig.fmap.geom.Geometry;
 
 /**
+ * Class that represents a property that is contained inside a
+ * {@link VisorBlock}
+ * 
  * @author jsanz
  * 
  */
 public interface VisorProperty {
 
+    /**
+     * 
+     * @return the identificator of the property
+     */
     public String getCode();
 
+    /**
+     * 
+     * @return the date the property was created (as an Integer)
+     */
     public Integer getCreationDate();
 
+    /**
+     * 
+     * @return the geometry that contains the property
+     */
     public Geometry getShape();
 
+    /**
+     * 
+     * @return the identificator of the municipality where the property belongs
+     */
     public Integer getMunicipalityCode();
 
+    /**
+     * 
+     * @return a reference to the manager
+     */
     public VisorManager getManager();
 
+    /**
+     * 
+     * @return the code of the block that the property belongs
+     */
     public String getBlockCode();
 }
