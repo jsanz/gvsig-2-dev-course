@@ -40,7 +40,7 @@ Have a nice day!
 - On the _External tools_ favorite section `mvn create_installer` is
   recommended but afterwards it doesn't appear at the screenshot
 
-## Lesson 3
+### Lesson 3
 
 - I read the (great) documentation
 - I create the asked interfaces and modify the `VisitorManager`
