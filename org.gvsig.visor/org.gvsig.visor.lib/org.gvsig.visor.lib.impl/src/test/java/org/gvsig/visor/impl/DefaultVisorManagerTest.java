@@ -26,6 +26,9 @@ package org.gvsig.visor.impl;
 import java.io.File;
 import java.net.URL;
 
+import org.gvsig.fmap.dal.DALLocator;
+import org.gvsig.fmap.dal.DataManager;
+import org.gvsig.tools.evaluator.sqljep.SQLJEPEvaluator;
 import org.gvsig.visor.VisorManager;
 import org.gvsig.visor.VisorManagerTest;
 
@@ -45,8 +48,11 @@ public class DefaultVisorManagerTest extends VisorManagerTest {
 
     @Override
     protected void doSetUp() throws Exception {
-        // TODO Auto-generated method stub
         super.doSetUp();
+
+        // Register SQLJEP for the tests
+        DataManager dataManager = DALLocator.getDataManager();
+        dataManager.registerDefaultEvaluator(SQLJEPEvaluator.class);
     }
 
     @Override

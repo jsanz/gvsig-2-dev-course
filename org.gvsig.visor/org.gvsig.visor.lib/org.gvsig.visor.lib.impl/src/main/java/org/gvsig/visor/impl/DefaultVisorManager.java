@@ -32,8 +32,15 @@ import org.gvsig.fmap.dal.DALLocator;
 import org.gvsig.fmap.dal.DataManager;
 import org.gvsig.fmap.dal.DataStore;
 import org.gvsig.fmap.dal.DataStoreParameters;
+import org.gvsig.fmap.dal.exception.DataException;
+import org.gvsig.fmap.dal.feature.Feature;
+import org.gvsig.fmap.dal.feature.FeatureQuery;
+import org.gvsig.fmap.dal.feature.FeatureSet;
 import org.gvsig.fmap.dal.feature.FeatureStore;
 import org.gvsig.fmap.geom.Geometry;
+import org.gvsig.fmap.geom.operation.GeometryOperationException;
+import org.gvsig.fmap.geom.operation.GeometryOperationNotSupportedException;
+import org.gvsig.tools.dispose.DisposableIterator;
 import org.gvsig.visor.VisorBlock;
 import org.gvsig.visor.VisorException;
 import org.gvsig.visor.VisorManager;
@@ -72,8 +79,54 @@ public class DefaultVisorManager implements VisorManager {
     }
 
     public VisorBlock getBlock(Geometry point) throws VisorException {
-        // TODO
-        LOG.warn("Not implemented yet");
+        FeatureSet set = null;
+        DisposableIterator it = null;
+
+        try {
+            // Get the defalut geometry name from the default feature type
+            String geomFieldName =
+                this.blocks.getDefaultFeatureType()
+                    .getDefaultGeometryAttributeName();
+
+            // Create the evaluator and a Query to apply on the store
+            IntersectsEvaluator evaluator =
+                new IntersectsEvaluator(geomFieldName, point);
+            FeatureQuery query = this.blocks.createFeatureQuery();
+            query.setFilter(evaluator);
+            set = this.blocks.getFeatureSet(query);
+
+            // Create an iterator and use it
+            it = set.fastIterator();
+
+            // if it has no elements then return null
+            if (!it.hasNext())
+                return null;
+
+            while (it.hasNext()) {
+                Feature feat = (Feature) it.next();
+                // Create and return a new VisorBlock created from the feature
+                VisorBlock block =
+                    new DefaultVisorBlock(this,
+                        feat.getString(DefaultVisorBlock.CODE_FIELD_NAME),
+                        feat.getDefaultGeometry());
+                return block;
+            }
+
+        } catch (DataException e) {
+            throw new VisorException(e);
+        } catch (GeometryOperationNotSupportedException e) {
+            throw new VisorException(e);
+        } catch (GeometryOperationException e) {
+            throw new VisorException(e);
+        } finally {
+            if (set != null) {
+                set.dispose();
+            }
+            if (it != null) {
+                it.dispose();
+            }
+        }
+
         return null;
     }
 
