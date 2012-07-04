@@ -117,6 +117,12 @@ Have a nice day!
 
 ## Lesson 6
 
+<div style="float:right;margin:10px 0 10px 10px;">
+  <a href="/jsanz/gvsig-2-dev-course/raw/master/imgs/simple-app.png">
+    <img style="width:500px;" src="/jsanz/gvsig-2-dev-course/raw/master/imgs/simple-app.png">
+  </a>
+</div>
+
 - Coded following the lesson materials without major problems, no 
   debug at all
 - The HTML from `getText()` was not well formed but it worked
@@ -132,3 +138,4 @@ Have a nice day!
 - I would use a gridbag layout but, meh, the border layout is cool
 - As always, coding a reasonable good GUI takes more time than any other
   component on a Java app
+
