@@ -83,6 +83,7 @@ public class DefaultVisorBlock implements VisorBlock {
             FeatureStore store = manager.getProperties();
 
             DataManager dataManager = DALLocator.getDataManager();
+            FeatureSet set = null;
             try {
                 // Create a new evaluator with the code block value
                 Evaluator evaluator =
@@ -93,7 +94,7 @@ public class DefaultVisorBlock implements VisorBlock {
                 featureQuery.setFilter(evaluator);
 
                 // Run over a feature set created with the evaluator
-                FeatureSet set = store.getFeatureSet(featureQuery);
+                set = store.getFeatureSet(featureQuery);
                 set.accept(new Visitor() {
 
                     public void visit(Object obj)
@@ -122,6 +123,10 @@ public class DefaultVisorBlock implements VisorBlock {
                 throw new VisorException(e);
             } catch (BaseException e) {
                 throw new VisorException(e);
+            } finally {
+                if (set != null) {
+                    set.dispose();
+                }
             }
 
         }

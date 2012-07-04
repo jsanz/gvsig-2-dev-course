@@ -1,7 +1,6 @@
-/**
- * gvSIG. Desktop Geographic Information System.
+/* gvSIG. Desktop Geographic Information System.
  *
- * Copyright (C) 2007-2012 gvSIG Association.
+ * Copyright © 2007-2012 gvSIG Association
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,20 +20,18 @@
  * For any additional information, do not hesitate to contact us
  * at info AT gvsig.com, or visit our website www.gvsig.com.
  */
-package org.gvsig.visor.swing.impl;
+package org.gvsig.visor.swing;
 
-import org.gvsig.visor.swing.JVisorServicePanel;
-import org.gvsig.visor.swing.JVisorServicePanelTest;
+import org.gvsig.visor.VisorBlock;
 
 /**
- * {@link JVisorServicePanel} API compatibility tests for the
- * {@link DefaultJVisorServicePanel} implementation.
  * 
- * @author gvSIG Team
- * @version $Id$
+ * Panel to show block information
+ * 
+ * @author jsanz
+ * 
  */
-public class DefaultJVisorServicePanelTest extends
-    JVisorServicePanelTest {
+public interface VisorBlockPanel extends VisorPanel {
 
-    // Nothing to add
+    public VisorBlock getVisorBlock();
 }

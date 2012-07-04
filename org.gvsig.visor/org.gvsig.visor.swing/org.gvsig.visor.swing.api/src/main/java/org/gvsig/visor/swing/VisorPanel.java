@@ -1,7 +1,6 @@
-/**
- * gvSIG. Desktop Geographic Information System.
+/* gvSIG. Desktop Geographic Information System.
  *
- * Copyright (C) 2007-2012 gvSIG Association.
+ * Copyright © 2007-2012 gvSIG Association
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,25 +22,17 @@
  */
 package org.gvsig.visor.swing;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
-import org.gvsig.visor.VisorService;
 
 /**
- * A panel to show a {@link VisorService}.
+ * Interface for the panels of the application
  * 
- * @author gvSIG Team
- * @version $Id$
+ * @author jsanz
+ * 
  */
-public abstract class JVisorServicePanel extends JPanel {
+public interface VisorPanel {
 
-    private static final long serialVersionUID = 114900538340226231L;
-
-    /**
-     * Returns the {@link VisorService} associated with the panel.
-     * 
-     * @return the {@link VisorService}
-     */
-    public abstract VisorService getVisor();
+    public JComponent getComponent();
 
 }

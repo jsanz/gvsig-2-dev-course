@@ -81,6 +81,7 @@ public abstract class VisorManagerTest extends
         // Get de Feature set and check it's not empty
         set = store.getFeatureSet();
         assertFalse("The blocks FeatureStore has not elements", set.isEmpty());
+        set.dispose();
 
     }
 
@@ -101,6 +102,7 @@ public abstract class VisorManagerTest extends
         set = store.getFeatureSet();
         assertFalse("The blocks FeatureStore has not elements", set.isEmpty());
 
+        set.dispose();
     }
 
     /**
@@ -133,7 +135,6 @@ public abstract class VisorManagerTest extends
             new HashMap<String, List<String>>();
 
         FeatureStore store = null;
-        FeatureSet set = null;
         store = manager.getProperties();
         // Check if the FeatureStore is null
         assertNotNull(store);
@@ -169,6 +170,8 @@ public abstract class VisorManagerTest extends
         // Check if the FeatureStore is null
         assertNotNull(store);
         // Get de Feature set and check it's not empty
+
+        FeatureSet set = null;
         set = store.getFeatureSet();
 
         // Visit all block features, get the center and get check the getBlock
@@ -208,6 +211,7 @@ public abstract class VisorManagerTest extends
 
             }
         });
+        set.dispose();
     }
 
     /**

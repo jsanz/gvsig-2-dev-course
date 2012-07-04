@@ -23,9 +23,9 @@
  */
 package org.gvsig.visor.swing;
 
-import org.gvsig.visor.VisorManager;
-import org.gvsig.visor.VisorService;
 import org.gvsig.tools.swing.api.windowmanager.WindowManager;
+import org.gvsig.visor.VisorBlock;
+import org.gvsig.visor.VisorManager;
 
 /**
  * This class is responsible of the management of the library's swing user
@@ -39,17 +39,14 @@ import org.gvsig.tools.swing.api.windowmanager.WindowManager;
 public interface VisorSwingManager {
 
     /**
-     * Returns the panel associated to a {@link VisorService}.
      * 
-     * @param cookie
-     *            {@link VisorService} contained on the panel
-     * @return a {@link JVisorServicePanel} with the panel of the
-     *         {@link VisorService}
-     * @see JVisorServicePanel
-     * @see VisorService
+     * Produce a GUI for a given block
+     * 
+     * @param The
+     *            {@link VisorBlock} to represent on a panel
+     * @return {@link VisorBlockPanel}
      */
-    public JVisorServicePanel createVisor(
-        VisorService cookie);
+    public VisorBlockPanel createVisorBlockPanel(VisorBlock visorBlock);
 
     /**
      * Returns the {@link VisorManager}.

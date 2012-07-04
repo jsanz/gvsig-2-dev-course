@@ -23,15 +23,15 @@
  */
 package org.gvsig.visor.swing.impl;
 
-import org.gvsig.visor.VisorLocator;
-import org.gvsig.visor.VisorManager;
-import org.gvsig.visor.VisorService;
-import org.gvsig.visor.swing.VisorSwingManager;
-import org.gvsig.visor.swing.JVisorServicePanel;
 import org.gvsig.tools.ToolsLocator;
 import org.gvsig.tools.i18n.I18nManager;
 import org.gvsig.tools.swing.api.ToolsSwingLocator;
 import org.gvsig.tools.swing.api.windowmanager.WindowManager;
+import org.gvsig.visor.VisorBlock;
+import org.gvsig.visor.VisorLocator;
+import org.gvsig.visor.VisorManager;
+import org.gvsig.visor.swing.VisorBlockPanel;
+import org.gvsig.visor.swing.VisorSwingManager;
 
 /**
  * Default implementation of the {@link VisorSwingManager}.
@@ -52,13 +52,6 @@ public class DefaultVisorSwingManager implements
         this.windowManager = ToolsSwingLocator.getWindowManager();
     }
 
-    public JVisorServicePanel createVisor(
-        VisorService cookie) {
-        JVisorServicePanel panel =
-            new DefaultJVisorServicePanel(this, cookie);
-        return panel;
-    }
-
     public VisorManager getManager() {
         return this.manager;
     }
@@ -69,5 +62,9 @@ public class DefaultVisorSwingManager implements
 
     public WindowManager getWindowManager() {
         return this.windowManager;
+    }
+
+    public VisorBlockPanel createVisorBlockPanel(VisorBlock visorBlock) {
+        return new DefaultVisorBlockPanel(visorBlock, this);
     }
 }

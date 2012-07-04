@@ -23,11 +23,17 @@
  */
 package org.gvsig.visor.swing;
 
+import java.io.File;
+
+import org.gvsig.fmap.dal.feature.Feature;
+import org.gvsig.fmap.dal.feature.FeatureStore;
+import org.gvsig.fmap.geom.Geometry;
+import org.gvsig.fmap.geom.GeometryLocator;
+import org.gvsig.tools.dispose.DisposableIterator;
+import org.gvsig.tools.junit.AbstractLibraryAutoInitTestCase;
+import org.gvsig.visor.VisorBlock;
 import org.gvsig.visor.VisorLocator;
 import org.gvsig.visor.VisorManager;
-import org.gvsig.visor.VisorService;
-import org.gvsig.tools.junit.AbstractLibraryAutoInitTestCase;
-import org.gvsig.tools.service.ServiceException;
 
 /**
  * API compatibility tests for {@link VisorSwingManager}
@@ -45,6 +51,8 @@ public abstract class VisorSwingManagerTest extends
     @Override
     protected void doSetUp() throws Exception {
         manager = VisorLocator.getManager();
+        manager.initialize(getBlocksForTest(), getPropertiesForTest(),
+            getBackgroundForTest());
         swingManager = VisorSwingLocator.getSwingManager();
     }
 
@@ -52,14 +60,66 @@ public abstract class VisorSwingManagerTest extends
         assertEquals(manager, swingManager.getManager());
     }
 
-    public void testCreationJVisorServicePanel()
-        throws ServiceException {
-        VisorService cookie = manager.getVisorService();
+    public void testCreateVisorBlockPanel() throws Exception{
+        FeatureStore store = null;
+        DisposableIterator it = null;
+        try{
+            // get the iterator from the dataset
+            store = manager.getBlocks();
+            it = store.getFeatureSet().fastIterator();
+            assertTrue(it.hasNext());
+            // get the first feature
+            Feature feat = (Feature) it.next();
+            // Create a geometry from COORD attributes
+            Geometry geom =
+                GeometryLocator.getGeometryManager().createPoint(
+                    feat.getDouble("COORX"), feat.getDouble("COORY"),
+                Geometry.TYPES.POINT);
 
-        JVisorServicePanel panel1 =
-            swingManager.createVisor(cookie);
+            // Get the block that intersects the geom and a panel from it
+            VisorBlock block = manager.getBlock(geom);
+            assertNotNull(block);
+            VisorBlockPanel panel = swingManager.createVisorBlockPanel(block);
 
-        assertNotNull(panel1);
+            // check panel and associated block values
+
+            assertNotNull(panel);
+            assertNotNull(panel.getComponent());
+            assertNotNull(panel.getVisorBlock());
+            assertEquals(block.getCode(), panel.getVisorBlock().getCode());
+
+        }catch(Exception e){
+            throw new Exception(e);
+        }finally{
+            if (store != null) {
+                store.dispose();
+            }
+            if (it != null) {
+                it.dispose();
+            }
+        }
+        
     }
+
+    /**
+     * 
+     * @return the File descriptor of a shapefile with
+     *         some blocks for testing the GUI
+     */
+    protected abstract File getBlocksForTest();
+
+    /**
+     * 
+     * @return the File descriptor of a shapefile with
+     *         some properties for testing the GUI
+     */
+    protected abstract File getPropertiesForTest();
+
+    /**
+     * 
+     * @return the File descriptor of a TIFF
+     *         for testing the GUI
+     */
+    protected abstract File getBackgroundForTest();
 
 }

@@ -30,3 +30,11 @@ through the ClassLoader.
 By default, in this folder you can find an example of log4j configuration,
 prepared to log messages through the console, so logging works when you
 run your classes.
+
+
+=== Attention ===
+
+To run this demo you need a data folder that won't be uploaded to the
+source code repository. You can use the small subset located at
+
+/org.gvsig.visor/org.gvsig.visor.lib/org.gvsig.visor.lib.impl/src/test/resources/data

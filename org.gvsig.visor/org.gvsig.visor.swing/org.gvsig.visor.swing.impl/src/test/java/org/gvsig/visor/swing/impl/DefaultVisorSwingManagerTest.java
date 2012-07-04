@@ -23,6 +23,9 @@
  */
 package org.gvsig.visor.swing.impl;
 
+import java.io.File;
+import java.net.URL;
+
 import org.gvsig.visor.swing.VisorSwingManager;
 import org.gvsig.visor.swing.VisorSwingManagerTest;
 
@@ -36,5 +39,25 @@ import org.gvsig.visor.swing.VisorSwingManagerTest;
 public class DefaultVisorSwingManagerTest extends
     VisorSwingManagerTest {
 
-    // Nothing to add
+    @Override
+    protected File getPropertiesForTest() {
+        return getResource("data/properties.shp");
+    }
+
+    @Override
+    protected File getBackgroundForTest() {
+        return getResource("data/PNOA.tif");
+    }
+
+    @Override
+    protected File getBlocksForTest() {
+        return getResource("data/blocks.shp");
+    }
+
+    private File getResource(String pathname) {
+        URL res = this.getClass().getClassLoader().getResource(pathname);
+        return new File(res.getPath());
+    }
+
 }
+

@@ -40,7 +40,7 @@ Have a nice day!
 - On the _External tools_ favorite section `mvn create_installer` is
   recommended but afterwards it doesn't appear at the screenshot
 
-## Lesson 3
+### Lesson 3
 
 - I read the (great) documentation
 - I create the asked interfaces and modify the `VisitorManager`
@@ -112,3 +112,23 @@ Have a nice day!
 - Added normal comments but no javadocs as almost all code was on the
   implementation, not on the API side.
 
+
+## Day 5
+
+## Lesson 6
+
+- Coded following the lesson materials without major problems, no 
+  debug at all
+- The HTML from `getText()` was not well formed but it worked
+- The rest of the time was spent on improving the panel for the blocks with
+
+  - Formatting area and perimeter numbers
+  - Formatting the date properly
+  - Addindg old HTML tags for bold fonts
+  - Defining a default sensible size
+  - Setting an specific font for better bold texts looking
+  - Addind an empty border so the elements are not so close to the border
+
+- I would use a gridbag layout but, meh, the border layout is cool
+- As always, coding a reasonable good GUI takes more time than any other
+  component on a Java app
