@@ -115,7 +115,7 @@ Have a nice day!
 
 ## Day 5
 
-## Lesson 6
+### Lesson 6
 
 <div style="float:right;margin:10px 0 10px 10px;">
   <a href="/jsanz/gvsig-2-dev-course/raw/master/imgs/simple-app.png">
@@ -138,4 +138,25 @@ Have a nice day!
 - I would use a gridbag layout but, meh, the border layout is cool
 - As always, coding a reasonable good GUI takes more time than any other
   component on a Java app
+
+## Day 6
+
+- Just fixing small things commented by the teacher to improve my code
+
+  - Add explicit `private` modifiers for class variables to improve encapsulation
+  - Remove `this` when accessing class properties when there is no chance for error
+    with local variables. This is more a convention. And I don't like it, I think is
+    a good practice because it makes more understandable the code.
+
+## Day 7
+
+### Lesson 7
+
+- Reading the lesson materials
+- When doing a `mvn install` on the `mainplugin` project the process doesn't finish
+  with a cryptic error. The mvn log is at [pastebin](http://pastebin.com/PWy8NkCa) and
+  I've reported it at the forum. Anyway it doesn't blocks the rest of the lesson.
+- Did the changes requested on the materials, quite easy by the way and compiled and
+  installed on the gvSIG plugin folder
+- Started gvSIG and assured the extension was there (no GUI yet).
 
