@@ -110,7 +110,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.fmap.mapcontext</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
 			<artifactId>org.gvsig.fmap.control</artifactId>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
