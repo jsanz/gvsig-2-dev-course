@@ -53,15 +53,15 @@ public class DefaultVisorSwingManager implements
     }
 
     public VisorManager getManager() {
-        return this.manager;
+        return manager;
     }
 
     public String getTranslation(String key) {
-        return this.i18nmanager.getTranslation(key);
+        return i18nmanager.getTranslation(key);
     }
 
     public WindowManager getWindowManager() {
-        return this.windowManager;
+        return windowManager;
     }
 
     public VisorBlockPanel createVisorBlockPanel(VisorBlock visorBlock) {

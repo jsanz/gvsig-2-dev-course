@@ -60,42 +60,42 @@ public class DefaultVisorProperty implements VisorProperty {
      * @see org.gvsig.visor.VisorProperty#getCode()
      */
     public String getCode() {
-        return this.code;
+        return code;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorProperty#getCreationDate()
      */
     public Integer getCreationDate() {
-        return this.creationDate;
+        return creationDate;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorProperty#getShape()
      */
     public Geometry getShape() {
-        return this.shape;
+        return shape;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorProperty#getMunicipalityCode()
      */
     public Integer getMunicipalityCode() {
-        return this.municipalityCode;
+        return municipalityCode;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorProperty#getManager()
      */
     public VisorManager getManager() {
-        return this.manager;
+        return manager;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorProperty#getBlockCode()
      */
     public String getBlockCode() {
-        return this.blockCode;
+        return blockCode;
     }
 
 }

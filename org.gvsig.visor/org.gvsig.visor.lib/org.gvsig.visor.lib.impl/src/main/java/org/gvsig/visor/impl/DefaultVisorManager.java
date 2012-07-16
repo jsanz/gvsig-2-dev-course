@@ -85,15 +85,15 @@ public class DefaultVisorManager implements VisorManager {
         try {
             // Get the defalut geometry name from the default feature type
             String geomFieldName =
-                this.blocks.getDefaultFeatureType()
+                blocks.getDefaultFeatureType()
                     .getDefaultGeometryAttributeName();
 
             // Create the evaluator and a Query to apply on the store
             IntersectsEvaluator evaluator =
                 new IntersectsEvaluator(geomFieldName, point);
-            FeatureQuery query = this.blocks.createFeatureQuery();
+            FeatureQuery query = blocks.createFeatureQuery();
             query.setFilter(evaluator);
-            set = this.blocks.getFeatureSet(query);
+            set = blocks.getFeatureSet(query);
 
             // Create an iterator and use it
             it = set.fastIterator();
@@ -131,15 +131,15 @@ public class DefaultVisorManager implements VisorManager {
     }
 
     public FeatureStore getBlocks() {
-        return this.blocks;
+        return blocks;
     }
 
     public FeatureStore getProperties() {
-        return this.properties;
+        return properties;
     }
 
     public DataStore getBackground() {
-        return this.background;
+        return background;
     }
 
     private FeatureStore getShape(File shape) throws VisorException {

@@ -59,8 +59,8 @@ import org.gvsig.visor.swing.VisorSwingManager;
  */
 public class DefaultVisorBlockPanel extends JPanel implements VisorBlockPanel {
 
-    VisorBlock block;
-    VisorSwingManager uiManager;
+    private VisorBlock block;
+    private VisorSwingManager uiManager;
 
     /**
      * The constructor builds all the panel components on an easy border layout
@@ -158,22 +158,22 @@ public class DefaultVisorBlockPanel extends JPanel implements VisorBlockPanel {
             String tmp = "";
             // add to a temporal string the data of the block and its shape
             tmp +=
-                "<P><B><FONT COLOR=RED>Block: " + this.block.getCode()
+                "<P><B><FONT COLOR=RED>Block: " + block.getCode()
                     + "</FONT></B>";
             tmp +=
                 "<P><B>Area:</B> "
-                    + format.format(this.block.getShape().area()) + " m2";
+                    + format.format(block.getShape().area()) + " m2";
             tmp +=
                 "<P><B>Perimeter:</B> "
-                    + format.format(this.block.getShape().perimeter()) + " m";
+                    + format.format(block.getShape().perimeter()) + " m";
             tmp +=
                 "<P><B>Number of properties:</B> "
-                    + this.block.getProperties().size();
+                    + block.getProperties().size();
             // add to the string buffer the first chunk of data
             sb.append(tmp);
 
             tmp = "<UL>";
-            List<VisorProperty> props = this.block.getProperties();
+            List<VisorProperty> props = block.getProperties();
 
             Iterator<VisorProperty> it = props.iterator();
             while (it.hasNext()) {

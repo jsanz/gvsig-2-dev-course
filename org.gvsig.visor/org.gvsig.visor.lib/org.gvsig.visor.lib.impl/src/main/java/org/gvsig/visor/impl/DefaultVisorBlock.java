@@ -52,10 +52,10 @@ public class DefaultVisorBlock implements VisorBlock {
 
     public static final String CODE_FIELD_NAME = "MASA";
 
-    VisorManager manager;
-    String code;
-    Geometry shape;
-    List<VisorProperty> properties = null;
+    private VisorManager manager;
+    private String code;
+    private Geometry shape;
+    private List<VisorProperty> properties = null;
 
     public DefaultVisorBlock(VisorManager manager, String code, Geometry shape) {
         this.manager = manager;
@@ -67,16 +67,16 @@ public class DefaultVisorBlock implements VisorBlock {
      * @see org.gvsig.visor.VisorBlock#getShape()
      */
     public Geometry getShape() {
-        return this.shape;
+        return shape;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorBlock#getProperties()
      */
     public List<VisorProperty> getProperties() throws VisorException {
-        if (this.properties != null) {
+        if (properties != null) {
             // if exists, return it
-            return this.properties;
+            return properties;
         } else {
             final ArrayList<VisorProperty> tmpProperties =
                 new ArrayList<VisorProperty>();
@@ -89,7 +89,7 @@ public class DefaultVisorBlock implements VisorBlock {
                 Evaluator evaluator =
                     dataManager
                         .createExpresion(DefaultVisorProperty.CODEBLOCK_FIELD_NAME
-                            + " = " + this.code);
+                            + " = " + code);
                 FeatureQuery featureQuery = store.createFeatureQuery();
                 featureQuery.setFilter(evaluator);
 
@@ -116,8 +116,8 @@ public class DefaultVisorBlock implements VisorBlock {
                 });
 
                 // Create a read-only list and return it
-                this.properties = Collections.unmodifiableList(tmpProperties);
-                return this.properties;
+                properties = Collections.unmodifiableList(tmpProperties);
+                return properties;
 
             } catch (InitializeException e) {
                 throw new VisorException(e);
@@ -136,14 +136,14 @@ public class DefaultVisorBlock implements VisorBlock {
      * @see org.gvsig.visor.VisorBlock#getManager()
      */
     public VisorManager getManager() {
-        return this.manager;
+        return manager;
     }
 
     /* (non-Javadoc)
      * @see org.gvsig.visor.VisorBlock#getCode()
      */
     public String getCode() {
-        return this.code;
+        return code;
     }
 
 }
