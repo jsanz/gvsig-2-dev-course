@@ -52,6 +52,14 @@
 			<artifactId>org.gvsig.visor.swing.impl</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.metadata.lib.basic.api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.fmap.dal</artifactId>
+		</dependency>
 	</dependencies>
 	<properties>
 		<package.info.state>devel</package.info.state>

@@ -23,16 +23,15 @@
  */
 package org.gvsig.visor.app.mainplugin;
 
-import org.gvsig.andami.messages.NotificationManager;
+import java.io.File;
+import java.net.URL;
+
 import org.gvsig.andami.plugins.Extension;
+import org.gvsig.visor.VisorException;
 import org.gvsig.visor.VisorLocator;
 import org.gvsig.visor.VisorManager;
-import org.gvsig.visor.VisorService;
 import org.gvsig.visor.swing.VisorSwingLocator;
 import org.gvsig.visor.swing.VisorSwingManager;
-import org.gvsig.visor.swing.JVisorServicePanel;
-import org.gvsig.tools.service.ServiceException;
-import org.gvsig.tools.swing.api.windowmanager.WindowManager;
 
 /**
  * Andami extension to show Visor in the application.
@@ -53,26 +52,23 @@ public class VisorExtension extends Extension {
     public void postInitialize() {
         super.postInitialize();
         manager = VisorLocator.getManager();
+
+        // Initialize VisorManager
+        try {
+            manager.initialize(getResource("data/blocks.shp"),
+                getResource("data/properties.shp"),
+                getResource("data/PNOA.tif"));
+        } catch (VisorException e) {
+            // TODO, manage this exception!!
+            e.printStackTrace();
+        }
+
         // Asignamos el locator e iniciamos la instancia
         swingManager = VisorSwingLocator.getSwingManager();
     }
 
     public void execute(String actionCommand) {
-        showVisor(manager);
-    }
 
-    public void showVisor(VisorManager manager) {
-        try {
-            VisorService service =
-                (VisorService) manager.getVisorService();
-            JVisorServicePanel panel =
-                swingManager.createVisor(service);
-            swingManager.getWindowManager().showWindow(panel, "Visor",
-                WindowManager.MODE.DIALOG);
-
-        } catch (ServiceException e) {
-            NotificationManager.addError(e);
-        }
     }
 
     public boolean isEnabled() {
@@ -81,6 +77,11 @@ public class VisorExtension extends Extension {
 
     public boolean isVisible() {
         return true;
+    }
+
+    private File getResource(String pathname) {
+        URL res = this.getClass().getClassLoader().getResource(pathname);
+        return new File(res.getPath());
     }
 
 }

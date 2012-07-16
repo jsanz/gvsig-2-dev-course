@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
-
+====
     gvSIG. Desktop Geographic Information System.
 
     Copyright (C) 2007-2012 gvSIG Association.
@@ -22,17 +20,21 @@
 
     For any additional information, do not hesitate to contact us
     at info AT gvsig.com, or visit our website www.gvsig.com.
+====
 
--->
-<plugin-config>
-	<depends plugin-name="org.gvsig.app" />
-	<resourceBundle name="text"/>
-	<libraries library-dir="lib"/>
-	<extensions>
-		<extension class-name="org.gvsig.visor.app.mainplugin.VisorExtension"
-			description=""
-			active="true"
-			priority="1">
-		</extension>		
-	</extensions>
-</plugin-config>
+Put into this folder the resources needed by your classes.
+
+This folder is added to the classpath, so you can load any resources 
+through the ClassLoader.
+
+By default, in this folder you can find an example of log4j configuration,
+prepared to log messages through the console, so logging works when you
+run your classes.
+
+
+=== Attention ===
+
+To run this demo you need a data folder that won't be uploaded to the
+source code repository. You can use the small subset located at
+
+/org.gvsig.visor/org.gvsig.visor.lib/org.gvsig.visor.lib.impl/src/test/resources/data
