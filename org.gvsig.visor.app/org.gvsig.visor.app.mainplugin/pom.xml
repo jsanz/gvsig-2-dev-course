@@ -60,6 +60,26 @@
 			<groupId>org.gvsig</groupId>
 			<artifactId>org.gvsig.fmap.dal</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.fmap.mapcontext</artifactId>
+			<scope>compile</scope>		
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.app</artifactId>
+			<scope>compile</scope>		
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.fmap.control</artifactId>
+			<scope>compile</scope>		
+		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.fmap.geometry</artifactId>
+			<scope>compile</scope>		
+		</dependency>
 	</dependencies>
 	<properties>
 		<package.info.state>devel</package.info.state>

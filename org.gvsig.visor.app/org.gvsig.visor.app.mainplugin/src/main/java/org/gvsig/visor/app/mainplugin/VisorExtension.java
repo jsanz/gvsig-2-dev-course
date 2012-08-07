@@ -26,7 +26,22 @@ package org.gvsig.visor.app.mainplugin;
 import java.io.File;
 import java.net.URL;
 
+import javax.swing.SwingUtilities;
+
+import org.gvsig.andami.messages.NotificationManager;
 import org.gvsig.andami.plugins.Extension;
+import org.gvsig.app.ApplicationLocator;
+import org.gvsig.app.ApplicationManager;
+import org.gvsig.app.project.documents.view.ViewDocument;
+import org.gvsig.app.project.documents.view.ViewManager;
+import org.gvsig.app.project.documents.view.gui.IView;
+import org.gvsig.fmap.dal.DataStore;
+import org.gvsig.fmap.dal.feature.FeatureStore;
+import org.gvsig.fmap.mapcontext.MapContext;
+import org.gvsig.fmap.mapcontext.MapContextManager;
+import org.gvsig.fmap.mapcontext.exceptions.LoadLayerException;
+import org.gvsig.fmap.mapcontext.layers.FLayer;
+import org.gvsig.fmap.mapcontrol.tools.Behavior.PointBehavior;
 import org.gvsig.visor.VisorException;
 import org.gvsig.visor.VisorLocator;
 import org.gvsig.visor.VisorManager;
@@ -43,6 +58,18 @@ public class VisorExtension extends Extension {
 
     private VisorManager manager;
     private VisorSwingManager swingManager;
+
+    /**
+     * to create new layers
+     */
+    private MapContextManager mapContextManager;
+    /**
+     * to access the window management
+     */
+    private ApplicationManager applicationManager;
+    private int createViewsCounter = 0;
+
+    private static final String CREATE_VIEW_ACTION = "CREATE_VIEW";
 
     public void initialize() {
         // Do nothing
@@ -65,10 +92,80 @@ public class VisorExtension extends Extension {
 
         // Asignamos el locator e iniciamos la instancia
         swingManager = VisorSwingLocator.getSwingManager();
+
+        applicationManager = ApplicationLocator.getManager();
+        mapContextManager = applicationManager.getMapContextManager();
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                try {
+                    createAndShowView();
+                } catch (LoadLayerException e) {
+                    NotificationManager.addError("Error loading layers", e);
+                }
+
+            }
+        });
+
+    }
+
+    private void createAndShowView() throws LoadLayerException {
+        // Get the view name
+        createViewsCounter++;
+        String myViewName =
+            swingManager.getTranslation("block_viewer") + "_"
+                + createViewsCounter;
+
+        // Get the project manager and create a new View document
+        ViewDocument myView =
+            (ViewDocument) applicationManager.getProjectManager()
+                .createDocument(ViewManager.TYPENAME, myViewName);
+
+        // Create the layers
+        String blockLayerName = swingManager.getTranslation("block_layer_name");
+        String backgroundLayerName =
+            swingManager.getTranslation("background_layer_name");
+
+        FeatureStore blockFS = manager.getBlocks();
+        DataStore backgroundDS = manager.getBackground();
+
+        FLayer blocksLayer =
+            mapContextManager.createLayer(blockLayerName, blockFS);
+        FLayer backgroundLayer =
+            mapContextManager.createLayer(backgroundLayerName, backgroundDS);
+
+        // Add them to the view
+        MapContext mapContext = myView.getMapContext();
+        mapContext.beginAtomicEvent();
+        mapContext.getLayers().addLayer(backgroundLayer);
+        mapContext.getLayers().addLayer(blocksLayer);
+        mapContext.endAtomicEvent();
+
+        // Add the view to the current project
+        applicationManager.getCurrentProject().add(myView);
+
+        // Show it centered
+        applicationManager.getUIManager().addCentredWindow(
+            myView.getMainWindow());
+
+        // Add the behavior
+        IView iView = (IView) myView.getMainWindow();
+
+        iView.getMapControl().addBehavior(
+            PropertiesOfBlockListener.PROPERTIES_OF_BLOCK_TOOL,
+            new PointBehavior(new PropertiesOfBlockListener()));
+
     }
 
     public void execute(String actionCommand) {
-
+        if (actionCommand.equalsIgnoreCase(CREATE_VIEW_ACTION)) {
+            try {
+                createAndShowView();
+            } catch (LoadLayerException e) {
+                NotificationManager.addError("Error loading layers", e);
+            }
+        }
     }
 
     public boolean isEnabled() {
