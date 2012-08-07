@@ -160,3 +160,15 @@ Have a nice day!
   installed on the gvSIG plugin folder
 - Started gvSIG and assured the extension was there (no GUI yet).
 
+## Day 8
+
+## Lesson 8
+
+- Reading the lesson materials carefully
+- Coding the extension slowly but without any real problemw materials are great
+- I've just changed the tool from an `action-tool` to a `selectable-tool` and
+  reported it to the course forum
+- It seems I've found a small bug on the selectable toolbar buttons behaviour, 
+  also reported at the forum
+- Anything more, the exercises now are more interesting as we are working with
+  the gvSIG top level objects: mapcontrol, views, etc.
