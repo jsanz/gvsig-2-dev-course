@@ -16,6 +16,9 @@
 	<resourceBundle name="text" />
 	<libraries library-dir="lib" />
 	<extensions>
+		<extension class-name="org.gvsig.visor.app.mainplugin.VisorToolsManagerExtension"
+			description="" active="true" priority="1">
+		</extension>
 		<extension class-name="org.gvsig.visor.app.mainplugin.VisorExtension"
 			description="" active="true" priority="1">
 			<menu text="tools/create_block_viewer" position="11"

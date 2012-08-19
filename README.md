@@ -172,3 +172,7 @@ Have a nice day!
   also reported at the forum
 - Anything more, the exercises now are more interesting as we are working with
   the gvSIG top level objects: mapcontrol, views, etc.
+
+## Day 9
+
+## Lesson 9
