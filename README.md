@@ -176,3 +176,10 @@ Have a nice day!
 ## Day 9
 
 ## Lesson 9
+
+- Reading the lesson material, it's short but not trivial
+- Coded the new extension, that disables some extension for our spcial views but
+  taking care of a previous ExclusiveUIExtension if it exists, and caching results
+  for ``isEnabled`` and ``isVisible`` methods.
+- Everything was right except for the ``hideExtension`` method where I coded an ``and``
+  instead of an ``or``. Easy to track with some small debugging.
