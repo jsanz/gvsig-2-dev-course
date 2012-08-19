@@ -175,7 +175,11 @@ Have a nice day!
 
 ## Day 9
 
-## Lesson 9
+At the end of the course I've started to use branches per lesson. I should have 
+to use this for the whole course but well, at that time I didn't had enough git 
+confidence por branching, rebasing, etc.
+
+### Lesson 9
 
 - Reading the lesson material, it's short but not trivial
 - Coded the new extension, that disables some extension for our spcial views but
@@ -183,3 +187,12 @@ Have a nice day!
   for ``isEnabled`` and ``isVisible`` methods.
 - Everything was right except for the ``hideExtension`` method where I coded an ``and``
   instead of an ``or``. Easy to track with some small debugging.
+
+### Lesson 10
+
+- Reading the lesson material, quite straight forward and trivial
+- Added the resources and the about information following the new API, really easy
+- Struggled a little bit with Java dates, in order to note use deprecated ``Date`` 
+  methods. At the end was quite easy using the ``SimpleDateFormat``.
+
+

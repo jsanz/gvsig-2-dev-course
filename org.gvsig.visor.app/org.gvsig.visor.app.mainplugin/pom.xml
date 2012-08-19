@@ -80,6 +80,11 @@
 			<artifactId>org.gvsig.fmap.geometry</artifactId>
 			<scope>compile</scope>		
 		</dependency>
+		<dependency>
+			<groupId>org.gvsig</groupId>
+			<artifactId>org.gvsig.about.api</artifactId>
+			<scope>compile</scope>		
+		</dependency>
 	</dependencies>
 	<properties>
 		<package.info.state>devel</package.info.state>

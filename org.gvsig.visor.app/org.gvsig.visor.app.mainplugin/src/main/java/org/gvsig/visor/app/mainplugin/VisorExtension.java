@@ -25,9 +25,14 @@ package org.gvsig.visor.app.mainplugin;
 
 import java.io.File;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
+import org.gvsig.about.AboutManager;
+import org.gvsig.about.AboutParticipant;
 import org.gvsig.andami.messages.NotificationManager;
 import org.gvsig.andami.plugins.Extension;
 import org.gvsig.app.ApplicationLocator;
@@ -108,6 +113,8 @@ public class VisorExtension extends Extension {
             }
         });
 
+        initializeAbout();
+
     }
 
     private void createAndShowView() throws LoadLayerException {
@@ -179,6 +186,23 @@ public class VisorExtension extends Extension {
     private File getResource(String pathname) {
         URL res = this.getClass().getClassLoader().getResource(pathname);
         return new File(res.getPath());
+    }
+
+    private void initializeAbout(){
+        AboutManager aboutManager = applicationManager.getAbout();
+        AboutParticipant dev = aboutManager.addDeveloper("Curso de desarrollo",
+                this.getClass().getClassLoader().getResource("about/curso-dev.html"), 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date begin, end;
+        try {
+            begin = sdf.parse("24/04/2012");
+            end = sdf.parse("27/04/2012");
+            dev.addContribution("Visor", "Visor personalizado de cartografía",
+                begin, end);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }
