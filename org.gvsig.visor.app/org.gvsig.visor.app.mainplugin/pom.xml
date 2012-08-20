@@ -4,8 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.gvsig.visor.app.mainplugin</artifactId>
 	<packaging>jar</packaging>
-	<name>Example: basic Visor for gvSIG</name>
-	<description>Basic Visor example plugin, used as a template for gvSIG projects</description>
+	<name>Block viewer</name>
+	<description>
+		Block and properties viewer with some cartography. 
+		This viewer is the result of a gvSIG development 
+		training by the gvSIG Association.
+	</description>
 	<parent>
 		<groupId>org.gvsig</groupId>
 		<artifactId>org.gvsig.visor.app</artifactId>

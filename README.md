@@ -196,3 +196,10 @@ confidence por branching, rebasing, etc.
   methods. At the end was quite easy using the ``SimpleDateFormat``.
 
 
+## Day 10
+
+### Lesson 11, 12 and 13
+
+- Reading the lesson materials, also 
+- Nothing in fact to code, just executing the plugin packaging goals
+- Trying to generate the sito for the ``org.gvsig.visor`` and ``org.gvsig.visor.app`` to publish them as well as the final packages on the ``gh-pages`` branch of this repo so they can be accesible at http://jorgesanz.net/gvsig-2-dev-course. I probably need a better computer to perform this task, generating the site is taking ages!!

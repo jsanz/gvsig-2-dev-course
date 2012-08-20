@@ -1,11 +1,11 @@
 #
-#Sun Aug 19 22:49:12 CEST 2012
+#Mon Aug 20 18:50:07 CEST 2012
 owner=gvSIG Association
 code=org.gvsig.visor.app.mainplugin
 java-version=j1_5
 official=false
 type=plugin
-version=1.0.0-SNAPSHOT-1
+version=1.0.0-SNAPSHOT-2
 state=devel
 operating-system=all
 dependencies=required\: org.gvsig.app -ge 2.0.0-0
@@ -14,7 +14,7 @@ web-url=http\://www.gvsig.com
 architecture=all
 model-version=1.0.1
 categories=Visor
-description=Basic Visor example plugin, used as a template for gvSIG projects
-buildNumber=1
+description=Block and properties viewer with some cartography. \n\t\tThis viewer is the result of a gvSIG development \n\t\ttraining by the gvSIG Association.
+buildNumber=2
 gvSIG-version=2.0.0
-name=Example\: basic Visor for gvSIG
+name=Block viewer
